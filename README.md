@@ -192,3 +192,8 @@ output(Json array object with Shop object with id ="Shop_4":
   }
 ]
 
+
+I have added the executable jar, which can be found at:
+
+RetailManagementMVC/RetailManagementMVC/build/libs/RetailManagementMVC-0.0.1-SNAPSHOT.jar
+
