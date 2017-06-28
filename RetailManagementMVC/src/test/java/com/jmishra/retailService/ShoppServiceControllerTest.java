@@ -33,8 +33,8 @@ public class ShoppServiceControllerTest {
 
 	@MockBean
 	private ShopServiceImpl shopService;
-	
-	Shop tempShop= new Shop("Shop_1","MyFashionStop", new Address("15A","Green Park Market","New Delhi"));
+	Address add = new Address("15A","Green Park Market","New Delhi");
+	Shop tempShop= new Shop("Shop_1","MyFashionStop", add);
 	
 	String exampleJSON = "{"+
     "\"id\": \"Shop_4\","+
