@@ -1,6 +1,7 @@
 package com.jmishra.retailService.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ public class ShopServiceController implements IShopController {
 	
 	@Override
 	@RequestMapping("/shops")
-	public List<Shop> getAllShops() {
+	public Map<String,Shop> getAllShops() {
 		
 		return shopService.getAllShops();
 	}
@@ -43,14 +44,21 @@ public class ShopServiceController implements IShopController {
 	@RequestMapping(method=RequestMethod.PUT, value="/shops/{shopId}")
 	public String updateShopDetails(@PathVariable String shopId, @RequestBody Shop updatedShop) {
 		Shop oldShopDetails = shopService.updateShop(shopId, updatedShop);
-		return oldShopDetails.toString()+ " has changed to "+updatedShop.toString();
+		if(oldShopDetails!=null)
+		return "oldShopDetails : \n\n"+oldShopDetails.toString()+ "\n\n has changed to \n\n newShopDetails: \n\n"+updatedShop.toString();
+		else
+			return "no shop with the given shop id in request";
 	}
 
 	@Override
 	@RequestMapping(method=RequestMethod.DELETE, value="/shops/{shopId}")
 	public String removeShopFromShopList(@PathVariable String shopId) {
 		Shop removedShop = shopService.removeShop(shopId);
-		return removedShop.toString()+" has been deleted from the shop inventory";
+		if(removedShop != null)
+		return "removedShop details: \n\n"+removedShop.toString();
+		else{
+			return "this shop doesn't exist in the shopList";
+		}
 	}
 
 }
